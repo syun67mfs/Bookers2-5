@@ -1,0 +1,36 @@
+ <div class="container">
+    <div class="row">
+    	<div class="col-xs-10">
+			<h2>Followers Users</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>image</th>
+						<th>name</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+				  <% @user.followers.each do |user| %>
+					<tr>
+						<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %></td>
+						<td><%= user.name %></td>
+						<td>following：
+						<%= user.followings.count %></td>
+						<td>followers：
+						<%= user.followers.count %></td>
+						<td><%= link_to relationships_path(user), method: :post do %>
+							unfollow
+							<% end %></td>
+						<td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
